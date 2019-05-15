@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/menu_update_profile"
+        android:icon="@drawable/ic_group_add_black_24dp"
+        android:iconTint="@color/colorPrimary"
+        android:title="UpDate Profile"/>
+    <item android:id="@+id/menu_contact_list"
+        android:iconTint="@color/colorAccentDark"
+        android:icon="@drawable/ic_group_black_24dp"
+        android:title="Contact List"/>
+    <item android:id="@+id/menu_about_us"
+        android:iconTint="@color/colorPrimary"
+        android:icon="@drawable/ic_info_outline_black_24dp"
+        android:title="About Us"/>
+    <item android:id="@+id/menu_view_location"
+        android:iconTint="@color/green"
+        android:icon="@drawable/ic_location_on_black_24dp"
+        android:title="View My Location"/>
+    <item android:id="@+id/menu_log_out"
+        android:iconTint="@color/red"
+        android:icon="@drawable/ic_error_outline_black_24dp"
+        android:title="Log out"/>
+</menu>

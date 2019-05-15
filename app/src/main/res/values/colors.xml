@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#0f74ce</color>
+    <color name="colorPrimaryDark">#0e62ac</color>
+    <color name="colorAccent">#0f74ce</color>
+    <color name="light_primary">#0b80e5</color>
+    <color name="colorAccentWithTransparency">#2003A9F4</color>
+    <color name="inactive_layover">#99FFFFFF</color>
+    <color name="search_layover">#99555555</color>
+    <color name="colorAccentDark">#0e62ac</color>
+    <color name="colorSecondary">#19c1e6</color>
+    <color name="colorSecondaryDark">#0090b4</color>
+    <color name="veryMediumLightGrey">#f0f0f0</color>
+    <color name="veryLightGrey">#f7f7f7</color>
+    <color name="veryVeryLightGrey">#f9f9f9</color>
+    <color name="lightGrey">#b7b7b7</color>
+    <color name="lightGreyWithTransparency">#20979797</color>
+    <color name="messageReceived">#f1f1f1</color>
+    <color name="messageSent">#0f74ce</color>
+    <color name="message_border">#eee</color>
+    <color name="defaultGrey">#979797</color>
+    <color name="darkGrey">#464646</color>
+    <color name="icon_grey">#888</color>
+    <color name="description_grey">#888</color>
+    <color name="bluishGrey">#f9f9f9</color>
+    <color name="graphDivider">#eaeaea</color>
+    <color name="graphShadow">#E3F2FD</color>
+    <color name="text_color_new">#DE000000</color>
+    <color name="desc_new">#61000000</color>
+    <color name="transparent_white_instruction">#88ffffff</color>
+    <!--<color name="bluishGrey">#E8EBF0</color>   -->
+    <!--<color name="dullblack">#212121</color>-->
+    <!--<color name="grey">#636363</color>-->
+    <color name="transparent_white">#66ffffff</color>
+    <color name="gradient_green">#006759</color>
+    <color name="gradient_blue">#053F5E</color>
+    <color name="gradient_grey">#F5F5F5</color>
+
+    <color name="payment_grey">#616565</color>
+    <color name="payment_light_grey">#E0E0E0</color>
+    <color name="mediumLightGrey">#ccc</color>
+
+    <color name="dullblack">#D9000000</color>
+    <color name="grey">#8C000000</color>
+
+    <color name="material_black_primary">#D9000000</color>
+    <color name="material_black_secondary">#8C000000</color>
+    <color name="black">#000000</color>
+    <color name="bottomNav">#f2f2f2</color>
+    <color name="white">#ffffff</color>
+    <color name="dull_white">#c8ffffff</color>
+    <color name="green">#2ecc71</color>
+    <color name="connected_green">#27ae60</color>
+    <color name="green_popular">#009688</color>
+    <color name="texterror">#dd0000</color>
+    <color name="red">#dd0000</color>
+    <color name="cardActivityBackground">#f1f1f1</color>
+    <color name="pin_background">#40cbe5</color>
+    <color name="pin_background_dark">#40cbe5</color>
+    <color name="button_background">#00ACC1</color>
+    <color name="splash_blue">#0763ac</color>
+    <color name="dividerColor">#ddd</color>
+
+    <color name="delete">#E53935</color>
+
+    <color name="options_color">#000</color>
+    <color name="edit">#2196F3</color>
+    <color name="edit_background">#E3F2FD</color>
+
+    <color name="stop">#F44336</color>
+    <color name="stop_background">#FFEBEE</color>
+
+    <color name="arrow">#aaa</color>
+    <color name="black_transparent">#88676767</color>
+    <color name="blue_btn_bg_color">#0f74ce</color>
+    <color name="blue_btn_bg_pressed_color">#0e62ac</color>
+    <color name="success_stroke_color">#0f74ce</color>
+    <color name="trans_success_stroke_color">#0f74ce</color>
+    <!--<color name="blue_btn_bg_color">#27ae60</color>-->
+    <!--<color name="blue_btn_bg_pressed_color">#2ecc71</color>-->
+    <color name="gray_btn_bg_color">#e74c3c</color>
+    <color name="scheduled">#0f74ce</color>
+    <color name="arrived">#ffc107</color>
+    <color name="current">#e74c3c</color>
+    <color name="completed">#4caf50</color>
+    <color name="canceled">#607d8b</color>
+    <color name="requested">#3f51b5</color>
+
+    <color name="scheduled_text">#36ca05</color>
+    <color name="arrived_text">#dda702</color>
+    <color name="current_text">#e74c3c</color>
+    <color name="completed_text">#3c893f</color>
+    <color name="canceled_text">#607d8b</color>
+    <color name="requested_text">#3f51b5</color>
+
+    <color name="appointment_wait">#36ca05</color>
+    <color name="appointment_schedule">#FFFF00</color>
+    <color name="appointment_cancelled">#e74c3c</color>
+    <color name="appointment_completed">#0f74ce</color>
+
+    <color name="display">#39b6ce</color>
+
+    <color name="status_chevron_done">#4caf50</color>
+    <color name="status_chevron_pending">#ddd</color>
+
+    <!--Blood glucose text color-->
+    <color name="bg_text_color_title">#527ad8</color>
+
+    <color name="main_green_color">#0f74ce</color>
+    <color name="main_green_stroke_color">#0e62ac</color>
+
+</resources>
