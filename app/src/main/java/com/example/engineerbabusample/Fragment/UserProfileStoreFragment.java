@@ -1,9 +1,9 @@
 package com.example.engineerbabusample.Fragment;
 
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,21 +22,29 @@ import butterknife.Unbinder;
 
 /**
  * A simple {@link Fragment} subclass.
+ * Created by arvind mewada
+ * user data input and
+ * save local data base in sql lite helper
  */
 public class UserProfileStoreFragment extends Fragment implements FragmentStructure {
 
-
-    @BindView(R.id.et_name)
-    EditText etName;
-    @BindView(R.id.button_save)
-    Button buttonSave;
+    @BindView(R.id.etUsername)
+    EditText etUsername;
+    @BindView(R.id.username_text_input_layout)
+    TextInputLayout usernameTextInputLayout;
+    @BindView(R.id.etUser_email)
+    EditText etUserEmail;
+    @BindView(R.id.user_email_text_input_layout)
+    TextInputLayout userEmailTextInputLayout;
+    @BindView(R.id.etUser_mobile)
+    EditText etUserMobile;
+    @BindView(R.id.user_mobile_text_input_layout)
+    TextInputLayout userMobileTextInputLayout;
+    @BindView(R.id.butom_save_user_date)
+    Button butomSaveUserDate;
     Unbinder unbinder;
-    @BindView(R.id.et_email)
-    EditText etEmail;
-    @BindView(R.id.et_mobile)
-    EditText etMobile;
-    private Context context;
 
+    private Context context;
     private DatabaseHelper db;
 
     public UserProfileStoreFragment() {
@@ -61,87 +69,14 @@ public class UserProfileStoreFragment extends Fragment implements FragmentStruct
 
     @Override
     public void initializationFragment() {
+        // data base helper initialization
         db = new DatabaseHelper(context);
     }
 
     @Override
     public void configurationFragment() {
-        buttonSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AddData();
-                createNote(etName.getText().toString()
-                        , etEmail.getText().toString()
-                        ,etMobile.getText().toString());
-            }
-        });
-    }
-
-    /**
-     * Inserting new note in db
-     * and refreshing the list
-     */
-    private void createNote(String note, String email, String mobile) {
-        // inserting note in db and getting
-        // newly inserted note id
-//        boolean isInserted =  db.insertData(note, email, mobile);
-//        Toast.makeText(context, "log : " + isInserted, Toast.LENGTH_SHORT).show();
 
     }
-
-    public  void AddData() {
-        buttonSave.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        boolean isInserted = db.insertData(etName.getText().toString(),
-                                etEmail.getText().toString(),
-                                etMobile.getText().toString() );
-                        if(isInserted == true)
-                            Toast.makeText(context,"Data Inserted",Toast.LENGTH_LONG).show();
-                        else
-                            Toast.makeText(context,"Data not Inserted",Toast.LENGTH_LONG).show();
-                    }
-                }
-        );
-    }
-
-    public void viewAll() {
-//        btnviewAll.setOnClickListener(
-//                new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        Cursor res = myDb.getAllData();
-//                        if(res.getCount() == 0) {
-//                            // show message
-//                            showMessage("Error","Nothing found");
-//                            return;
-//                        }
-//
-//                        StringBuffer buffer = new StringBuffer();
-//                        while (res.moveToNext()) {
-//                            buffer.append("Id :"+ res.getString(0)+"\n");
-//                            buffer.append("Name :"+ res.getString(1)+"\n");
-//                            buffer.append("Surname :"+ res.getString(2)+"\n");
-//                            buffer.append("Marks :"+ res.getString(3)+"\n\n");
-//                        }
-//
-//                        // Show all data
-//                        showMessage("Data",buffer.toString());
-//                    }
-//                }
-//        );
-    }
-
-    public void showMessage(String title,String Message){
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setCancelable(true);
-        builder.setTitle(title);
-        builder.setMessage(Message);
-        builder.show();
-    }
-
-
 
     @Override
     public void populationFragment() {
@@ -150,12 +85,60 @@ public class UserProfileStoreFragment extends Fragment implements FragmentStruct
 
     @Override
     public void onClickFragment() {
-
+        addData();
     }
 
     @Override
     public void getBundleFragment() {
 
+    }
+
+    /**
+     * insert user data in data base
+     * button save onclick
+     * */
+    public void addData() {
+        butomSaveUserDate.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (validation()) {
+                            boolean isInserted = db.insertData(etUsername.getText().toString(),
+                                    etUserEmail.getText().toString(),
+                                    etUserMobile.getText().toString());
+                            if (isInserted) {
+                                etUsername.setText("");
+                                etUserEmail.setText("");
+                                etUserMobile.setText("");
+                                Toast.makeText(context, "Data Inserted", Toast.LENGTH_LONG).show();
+                            }
+                    }else
+                        Toast.makeText(context, "Data not Inserted", Toast.LENGTH_LONG).show();
+                    }
+                }
+        );
+    }
+
+    /**
+     * validation check
+     * @Param name
+     * @Param email
+     * @Param mobile
+     * */
+    private boolean validation() {
+        if (etUsername.getText().length() == 0 ) {
+            etUsername.setError("Enter Name !!!");
+            return false;
+        }else if(etUserEmail.getText().length() == 0 ){
+            etUserEmail.setError("Enter Email !!!");
+            return false;
+        } else if(etUserMobile.getText().length() == 0
+                && etUserMobile.getText().length() != 10) {
+            etUserMobile.setError("Enter Mobile !!!");
+            return false;
+        } else {
+            return true;
+        }
     }
 
     @Override

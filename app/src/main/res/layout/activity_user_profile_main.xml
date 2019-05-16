@@ -6,22 +6,23 @@
     android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <!--Tab layout -->
         <android.support.design.widget.TabLayout
             android:id="@+id/tabLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
         </android.support.design.widget.TabLayout>
+        <!--View pager hold fragment-->
         <android.support.v4.view.ViewPager
             android:id="@+id/viewPager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
     </LinearLayout>
-
+    <!--navigation view-->
     <android.support.design.widget.NavigationView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
@@ -29,9 +30,5 @@
         android:layout_gravity="start"
         app:headerLayout="@layout/nav_header"
         android:id="@+id/nv">
-
     </android.support.design.widget.NavigationView>
-
-
-
 </android.support.v4.widget.DrawerLayout>

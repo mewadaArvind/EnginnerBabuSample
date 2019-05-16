@@ -5,13 +5,13 @@ import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 
 import com.example.engineerbabusample.DBUser.DataModelUser.UserDataModel;
-import com.example.engineerbabusample.DBUser.Repository.UserRepositiry;
+import com.example.engineerbabusample.DBUser.Repository.UserRepository;
 
 import java.util.List;
 
 public class ViewModelUser  extends AndroidViewModel {
 
-    public UserRepositiry mRepository;
+    public UserRepository mRepository;
     // Using LiveData and caching what getAlphabetizedWords returns has several benefits:
     // - We can put an observer on the data (instead of polling for changes) and only update the
     //   the UI when the data actually changes.
@@ -20,7 +20,7 @@ public class ViewModelUser  extends AndroidViewModel {
 
     public ViewModelUser(Application application) {
         super(application);
-        mRepository = new UserRepositiry(application);
+        mRepository = new UserRepository(application);
         mAllWords = mRepository.getAllWords();
     }
 
@@ -28,17 +28,6 @@ public class ViewModelUser  extends AndroidViewModel {
         return mAllWords;
     }
 
-    public void setmAllWords(LiveData<List<UserDataModel>> mAllWords) {
-        this.mAllWords = mAllWords;
-    }
-
-    public UserRepositiry getmRepository() {
-        return mRepository;
-    }
-
-    public void setmRepository(UserRepositiry mRepository) {
-        this.mRepository = mRepository;
-    }
 
     public void insert(UserDataModel word) {
         mRepository.insert(word);

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.engineerbabusample.Activity.NewEntryUserProfileActivity">
+    <EditText
+        android:layout_margin="@dimen/padding_left_16dp"
+        style="@style/Widget.AppCompat.EditText"
+       android:paddingTop="@dimen/padding_top_8dp"
+        android:textSize="@dimen/text_size_24sp"
+        android:paddingBottom="@dimen/padding_bottom_8dp"
+        android:id="@+id/tv_user_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:hint="Enter name"
+        android:importantForAutofill="yes" />
+    <Button
+        style="@style/TextAppearance.AppCompat.Button"
+        android:textColor="@color/white"
+        android:text="Save"
+        android:id="@+id/save_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>

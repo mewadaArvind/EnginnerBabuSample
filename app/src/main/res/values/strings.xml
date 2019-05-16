@@ -8,5 +8,14 @@
     <string name="Open">open</string>
     <string name="Close">close</string>
     <string name="empty_not_saved">NotSaved</string>
+    <string name="save_user">Save</string>
+    <string name="enter_mobile">Enter Mobile</string>
+    <string name="enter_email">Enter Email</string>
+    <string name="enter_username">Enter Username</string>
+    <string name="employes_data_enter">Employes Data Enter</string>
+    <string name="user_profile">User Profile</string>
+    <string name="profile_save">Profile Save</string>
+    <string name="face_book_status">Face book status :</string>
+    <string name="wel_come_enginner_babu_sample">Well Come Engineer Babu Sample</string>
 
 </resources>

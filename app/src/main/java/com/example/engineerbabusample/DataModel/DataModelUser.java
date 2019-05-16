@@ -6,11 +6,14 @@ public class DataModelUser {
     private String name, mobile;
     private String email;
 
-
+    public DataModelUser(String name, String mobile, String email) {
+        this.name = name;
+        this.mobile = mobile;
+        this.email = email;
+    }
 
     public DataModelUser() {
     }
-
 
     public int getId() {
         return id;

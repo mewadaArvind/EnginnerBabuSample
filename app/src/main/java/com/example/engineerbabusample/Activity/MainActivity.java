@@ -1,7 +1,10 @@
 package com.example.engineerbabusample.Activity;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -10,6 +13,7 @@ import android.widget.TextView;
 
 import com.example.engineerbabusample.Interface.ActivityStructure;
 import com.example.engineerbabusample.R;
+import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -27,8 +31,11 @@ public class MainActivity extends AppCompatActivity implements ActivityStructure
     @BindView(R.id.login_button)
     LoginButton loginButton;
 
+    private AccessToken token;
+
     //  call back manager facebook
     CallbackManager callbackManager;
+    public static LoginResult loginResultStatic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,28 +43,32 @@ public class MainActivity extends AppCompatActivity implements ActivityStructure
         getIntentValueActivity();
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        openUserProfileActivity();
-//
-//        initiationActivity();
-//        configurationActivity();
-//        populationActivity();
-//        onclickListenerActivity();
+        initiationActivity();
+        configurationActivity();
+        populationActivity();
+        onclickListenerActivity();
 
     }
 
+
     @Override
     public void initiationActivity() {
-        callBackManagerInitialization();
+        token = AccessToken.getCurrentAccessToken();
+        if (token != null) {
+            openUserProfileActivity();
+                finish();
+            //Means user is not logged in
+        }else {
+            callBackManagerInitialization();
+        }
     }
 
     @Override
     public void configurationActivity() {
-
     }
 
     @Override
     public void onclickListenerActivity() {
-
         loginButtonOnClickListener();
     }
 
@@ -93,10 +104,10 @@ public class MainActivity extends AppCompatActivity implements ActivityStructure
             @Override
             public void onSuccess(LoginResult loginResult) {
                 // App code
-
-                tvStatus.setText(""+loginResult.getAccessToken());
+                loginResultStatic = loginResult;
+                openUserProfileActivity();
                 Log.i("Success result : ", "" + loginResult);
-
+                finish();
             }
 
             @Override
@@ -119,6 +130,26 @@ public class MainActivity extends AppCompatActivity implements ActivityStructure
         startActivity(userProfile);
     }
 
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setMessage("Are you sure you want to exit?")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        onBackPressed();
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                })
+                .show();
+
+            super.onBackPressed();
+    }
 
     /**
      * face book login

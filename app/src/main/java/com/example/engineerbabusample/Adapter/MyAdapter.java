@@ -10,12 +10,10 @@ import com.example.engineerbabusample.Fragment.UserProfileStoreFragment;
 
 public class MyAdapter extends FragmentPagerAdapter {
 
-    private Context myContext;
-    int totalTabs;
+    private int totalTabs;
 
-    public MyAdapter(Context context, FragmentManager fm, int totalTabs) {
+    public MyAdapter(FragmentManager fm, int totalTabs) {
         super(fm);
-        this.myContext = context;
         this.totalTabs = totalTabs;
     }
 
@@ -24,11 +22,9 @@ public class MyAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                UserProfileStoreFragment userProfileStoreFragment = new UserProfileStoreFragment();
-                return userProfileStoreFragment;
+                return new UserProfileStoreFragment();
             case 1:
-                UserListShowFragment userListShowFragment = new UserListShowFragment();
-                return userListShowFragment;
+                return new UserListShowFragment();
             default:
                 return null;
         }

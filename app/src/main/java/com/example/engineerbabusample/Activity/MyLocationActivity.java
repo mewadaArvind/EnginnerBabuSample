@@ -23,16 +23,20 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionDeniedResponse;
+import com.karumi.dexter.listener.PermissionGrantedResponse;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.single.PermissionListener;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MyLocationActivity extends AppCompatActivity implements OnMapReadyCallback, ActivityStructure {
 
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
     private GoogleMap mMap;
-    Context context =this;
+    private Context context = this;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
 
     @Override
@@ -49,19 +53,16 @@ public class MyLocationActivity extends AppCompatActivity implements OnMapReadyC
 
     @Override
     public void initiationActivity() {
-        setSupportActionBar(toolbar);
         supportFragmentLoad();
-        setTitle("My Location");
-        if (getSupportActionBar() != null){
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setDisplayShowHomeEnabled(true);
-        }
     }
+
 
     private void supportFragmentLoad() {
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.current_location);
-        mapFragment.getMapAsync(this);
+        if (mapFragment != null) {
+            mapFragment.getMapAsync(this);
+        }
     }
 
     @Override

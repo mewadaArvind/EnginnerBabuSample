@@ -1,41 +1,46 @@
 package com.example.engineerbabusample.Activity;
 
-import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.engineerbabusample.Adapter.UserProfileUpdateAdapter;
 import com.example.engineerbabusample.DBUser.DataModelUser.UserDataModel;
 import com.example.engineerbabusample.DBUser.ViewModel.ViewModelUser;
 import com.example.engineerbabusample.Interface.ActivityStructure;
 import com.example.engineerbabusample.R;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class ProfileUpdateActivity extends AppCompatActivity implements ActivityStructure {
 
-    Context context = this;
-    UserProfileUpdateAdapter userProfileUpdateAdapter;
-    @BindView(R.id.rv_user_profile)
-    RecyclerView rvUserProfile;
-    List<UserDataModel> list = new ArrayList<>();
-    ViewModelUser viewModelUser;
-    public static final int NEW_WORD_ACTIVITY_REQUEST_CODE = 1;
-    @BindView(R.id.add_new)
-    FloatingActionButton addNew;
+    private Context context = this;
+    private ViewModelUser viewModelUser;
+
+    @BindView(R.id.iv_user_profile)
+    ImageView ivUserProfile;
+    @BindView(R.id.etUsername)
+    EditText etUsername;
+    @BindView(R.id.username_text_input_layout)
+    TextInputLayout usernameTextInputLayout;
+    @BindView(R.id.et_email_rname)
+    EditText etEmailRname;
+    @BindView(R.id.email_text_input_layout)
+    TextInputLayout emailTextInputLayout;
+    @BindView(R.id.et_mobile_name)
+    EditText etMobileName;
+    @BindView(R.id.mobile_text_input_layout)
+    TextInputLayout mobileTextInputLayout;
+    @BindView(R.id.save_button)
+    Button saveButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,23 +57,17 @@ public class ProfileUpdateActivity extends AppCompatActivity implements Activity
 
     @Override
     public void initiationActivity() {
-        userProfileUpdateAdapter = new UserProfileUpdateAdapter(context, list);
-        rvUserProfile.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
-        rvUserProfile.setAdapter(userProfileUpdateAdapter);
-        notifyUsrProfile();
-
+        backAfroAndTitleSet();
     }
 
-    private void notifyUsrProfile() {
-        viewModelUser.getmAllWords().observe(this, new Observer<List<UserDataModel>>() {
-            @Override
-            public void onChanged(@Nullable List<UserDataModel> userDataModels) {
-                list.addAll(userDataModels);
-                userProfileUpdateAdapter.notifyDataSetChanged();
-            }
-        });
-
+    private void backAfroAndTitleSet() {
+        setTitle("User Profile");
+        if (getSupportActionBar() != null){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
     }
+
 
     @Override
     public void configurationActivity() {
@@ -82,31 +81,51 @@ public class ProfileUpdateActivity extends AppCompatActivity implements Activity
 
     @Override
     public void populationActivity() {
-        addNew.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, NewEntryUserProfileActivity.class);
-                startActivityForResult(intent, NEW_WORD_ACTIVITY_REQUEST_CODE);
+        saveButtonOnClick();
+    }
+
+    /**
+     * user profile saved
+     * name
+    * */
+    private void saveButtonOnClick() {
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                if(validation()) {
+                    String s = etUsername.getText().toString();
+                    UserDataModel word = new UserDataModel(s);
+                    viewModelUser.insert(word);
+                    etUsername.setText("");
+                    etMobileName.setText("");
+                    etEmailRname.setText("");
+                    finish();
+                }else {
+                    Toast.makeText(context, "some thing went wrong !!!!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
+    }
 
+    /**
+     * validation user profile
+     * */
+    private boolean validation() {
+        if(etUsername.getText().length()==0){
+            etUsername.setError("Enter Name");
+            return false;
+        }else if(etMobileName.getText().length() == 0 && etMobileName.getText().length() != 10){
+            etMobileName.setError("Enter valid mobile");
+            return false;
+        }else if(etEmailRname.getText().length() == 0){
+            etEmailRname.setError("enter email");
+            return false;
+        }else {
+            return true;
+        }
     }
 
     @Override
     public void getIntentValueActivity() {
     }
 
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == NEW_WORD_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
-            UserDataModel word = new UserDataModel(data.getStringExtra(NewEntryUserProfileActivity.EXTRA_REPLY));
-            viewModelUser.insert(word);
-        } else {
-            Toast.makeText(
-                    getApplicationContext(),
-                    R.string.empty_not_saved,
-                    Toast.LENGTH_LONG).show();
-        }
-    }
 }

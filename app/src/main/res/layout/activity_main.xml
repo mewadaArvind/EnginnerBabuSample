@@ -3,25 +3,35 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/white"
+    android:background="@drawable/img"
     android:orientation="vertical"
+    android:layout_centerInParent="true"
     android:layout_height="match_parent"
     tools:context=".Activity.MainActivity">
     <!--text view for facebook status show-->
     <TextView
         android:id="@+id/tv_status"
-        android:textSize="22sp"
+        android:textSize="30sp"
         android:padding="28dp"
-        android:text="Face book status :"
-        android:textColor="@color/text_color_new"
-        android:gravity="center_horizontal"
+        android:textStyle="bold"
+        android:text="@string/face_book_status"
+        android:textColor="@color/white"
+        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <!--facebook login button default-->
     <com.facebook.login.widget.LoginButton
-        android:layout_marginTop="@dimen/padding_left_16dp"
+        android:layout_margin="100dp"
         android:id="@+id/login_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
         android:layout_gravity="center_horizontal" />
+    <TextView
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:textSize="30sp"
+        android:text="@string/wel_come_enginner_babu_sample"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 </LinearLayout>

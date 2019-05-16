@@ -3,6 +3,7 @@ package com.example.engineerbabusample.Fragment;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -43,7 +44,7 @@ public class UserListShowFragment extends Fragment implements FragmentStructure 
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         context = getActivity();
@@ -64,13 +65,20 @@ public class UserListShowFragment extends Fragment implements FragmentStructure 
 
     @Override
     public void configurationFragment() {
-        userAllProfileAdapter = new UserAllProfileAdapter(context,list);
+        userAllProfileAdapter = new UserAllProfileAdapter(list);
         rvUserProfileList.setLayoutManager(new LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false));
         rvUserProfileList.setAdapter(userAllProfileAdapter);
         notifyAdapter();
     }
 
+    @Override
+    public void onResume() {
+        notifyAdapter();
+        super.onResume();
+    }
+
     private void notifyAdapter() {
+        list.clear();
         list.addAll(db.getAllData());
         userAllProfileAdapter.notifyDataSetChanged();
     }

@@ -10,7 +10,7 @@ import com.example.engineerbabusample.DBUser.RoomDataBase.RoomUser;
 
 import java.util.List;
 
-public class UserRepositiry {
+public class UserRepository {
     private DAOUser mWordDao;
     private LiveData<List<UserDataModel>> mAllWords;
 
@@ -18,7 +18,7 @@ public class UserRepositiry {
     // dependency. This adds complexity and much more code, and this sample is not about testing.
     // See the BasicSample in the android-architecture-components repository at
     // https://github.com/googlesamples
-    public UserRepositiry(Application application) {
+    public UserRepository(Application application) {
         RoomUser db = RoomUser.getDatabase(application);
         mWordDao = db.wordDao();
         mAllWords = mWordDao.getAlphabetizedWords();
@@ -36,6 +36,7 @@ public class UserRepositiry {
     public void insert(UserDataModel word) {
         new insertAsyncTask(mWordDao).execute(word);
     }
+
 
     private static class insertAsyncTask extends AsyncTask<UserDataModel, Void, Void> {
 

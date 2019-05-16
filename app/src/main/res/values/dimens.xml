@@ -9,6 +9,8 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="app_bar_height">200dp</dimen>
     <dimen name="item_width">200dp</dimen>
+    <style name="text_large_wh">22sp</style>
+    <dimen name="margin_top">8dp</dimen>
 
     <dimen name="chevron_height">40dp</dimen>
 
