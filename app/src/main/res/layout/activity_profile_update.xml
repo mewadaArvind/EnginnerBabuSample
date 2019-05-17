@@ -9,14 +9,6 @@
     android:layout_height="match_parent"
     android:padding="@dimen/padding_left_16dp"
     tools:context="com.example.engineerbabusample.Activity.ProfileUpdateActivity">
-    <TextView
-        android:background="@color/messageReceived"
-        android:gravity="center"
-        android:textColor="@color/colorSecondary"
-        android:textSize="25sp"
-        android:text="@string/user_profile"
-        android:layout_width="match_parent"
-        android:layout_height="100dp" />
     <ImageView
         android:tint="@color/colorSecondary"
         android:src="@drawable/ic_account_circle_black_24dp"
@@ -68,6 +60,41 @@
             android:imeOptions="actionDone"
             android:hint="@string/enter_mobile" />
     </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_margin="@dimen/padding_left_16dp"
+        android:id="@+id/auth_text_input_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/sms_code_edt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:lines="1"
+            android:lineSpacingExtra="4dp"
+            android:imeOptions="actionDone"
+            android:hint="@string/enter_verify_code" />
+    </android.support.design.widget.TextInputLayout>
+    <Button
+        android:layout_marginTop="@dimen/margin_top"
+        android:id="@+id/start_auth_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_wh"
+        android:text="@string/start_phone_auth"
+        android:textColor="#fff" />
+    <Button
+        android:visibility="gone"
+        android:id="@+id/verify_auth_button"
+        android:layout_width="match_parent"
+        android:background="@drawable/button_wh"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/verify_phone_auth"
+        android:textColor="#fff" />
     <RelativeLayout
         android:layout_marginBottom="20dp"
         android:layout_width="match_parent"

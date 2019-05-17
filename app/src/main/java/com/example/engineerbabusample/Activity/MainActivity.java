@@ -1,5 +1,6 @@
 package com.example.engineerbabusample.Activity;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -47,16 +48,22 @@ public class MainActivity extends AppCompatActivity implements ActivityStructure
         configurationActivity();
         populationActivity();
         onclickListenerActivity();
-
     }
-
 
     @Override
     public void initiationActivity() {
+        checkFirstTimeLoginOrNot();
+    }
+
+    /**
+     * check user login
+     * check user login or not
+     * */
+    private void checkFirstTimeLoginOrNot() {
         token = AccessToken.getCurrentAccessToken();
         if (token != null) {
             openUserProfileActivity();
-                finish();
+            finish();
             //Means user is not logged in
         }else {
             callBackManagerInitialization();
@@ -116,6 +123,7 @@ public class MainActivity extends AppCompatActivity implements ActivityStructure
                 Log.i("Cancel result : ", "Cancel" );
             }
 
+            @SuppressLint("SetTextI18n")
             @Override
             public void onError(FacebookException exception) {
                 // App code
